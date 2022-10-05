@@ -39,26 +39,37 @@ function funcionpaso1(){
 }
 
 function funcionpaso2(){
-    if (sessionStorage.getItem("capital ingresado") === null) {
-        
-    } else {
-        elemento1existe = 1
+    let present = 0;
+    console.log("entramos a funcion paso 2");
+    if (sessionStorage.getItem("capital ingresado") != null && sessionStorage.getItem("capital ingresado") != "") {
+        console.log(sessionStorage.getItem("capital ingresado"));
+        document.getElementById("capital").value = sessionStorage.getItem("capital ingresado");
+        present++;
     }
-    if (sessionStorage.getItem("cuota ingresado") === null) {
-        
-    } else {
-        elemento2existe = 1
+    if (sessionStorage.getItem("cuota ingresado") != null && sessionStorage.getItem("cuota ingresado") != "") {
+        console.log(sessionStorage.getItem("cuota ingresado"));
+        document.getElementById("cuota").value = sessionStorage.getItem("cuota ingresado");
+        present++;
     }
-    if (sessionStorage.getItem("interes ingresado") === null) {
-        
-    } else {
-        elemento2existe = 1
+    if (sessionStorage.getItem("interes ingresado") != null && sessionStorage.getItem("interes ingresado") != "") {
+        console.log(sessionStorage.getItem("interes ingresado"));
+        document.getElementById("interes").value = sessionStorage.getItem("interes ingresado");
+        present++;
     }
-    elementosexistentes = (elemento1existe + elemento2existe + elemento3existe)
-    if (elementosexistentes = 3) {
-        gen_table()
+    console.log(present);
+    if(present > 2){
+        gen_table();
     }
+
 }
+function borrarStorage(){
+    sessionStorage.clear()
+    funcionpaso2()
+}
+
+
+
+funcionpaso2();
 
 
 
