@@ -1,8 +1,3 @@
-let textoCapital;
-let textoCuota;
-let textoInteres;
-let limpiarStorage;
-
 function gen_table(){
     document.getElementById("tab").innerHTML="";
     let capital=Number(document.getElementById("capital").value);
@@ -37,62 +32,50 @@ function gen_table(){
     }
 }
 
-function inicializarElementos() {
-    capital = document.getElementById("capital");
-    cuota = document.getElementById("cuota");
-    interes = document.getElementById("interes");
-    limpiarStorage = document.getElementById("limpiarStorage");
+function funcionpaso1(){
+    sessionStorage.setItem("capital ingresado", document.getElementById("capital").value);
+    sessionStorage.setItem("cuota ingresado", document.getElementById("cuota").value);
+    sessionStorage.setItem("interes ingresado", document.getElementById("interes").value);
 }
 
-function inicializarEventos() {
-    limpiarStorage.onclick = eliminarStorage;
-}
-
-function eliminarStorage() {
-    localStorage.clear();
-}
-
-function obtenerCapitalStorage() {
-    let capitalAlmacenado = localStorage.getItem("capital");
-    if (capitalAlmacenado) {
-        capital = capitalAlmacenado;
-        mostrarTextoCapital();
+function funcionpaso2(){
+    if (sessionStorage.getItem("capital ingresado") === null) {
+        
+    } else {
+        elemento1existe = 1
+    }
+    if (sessionStorage.getItem("cuota ingresado") === null) {
+        
+    } else {
+        elemento2existe = 1
+    }
+    if (sessionStorage.getItem("interes ingresado") === null) {
+        
+    } else {
+        elemento2existe = 1
+    }
+    elementosexistentes = (elemento1existe + elemento2existe + elemento3existe)
+    if (elementosexistentes = 3) {
+        gen_table()
     }
 }
 
-function obtenerCuotaStorage() {
-    let cuotaAlmacenado = localStorage.getItem("cuota");
-    if (cuotaAlmacenado) {
-        cuota = cuotaAlmacenado;
-        mostrarTextoCuota();
-    }
-}
 
-function obtenerInteresStorage() {
-    let interesAlmacenado = localStorage.getItem("interes");
-    if (interesAlmacenado) {
-        interes = interesAlmacenado;
-        mostrarTextoInteres();
-    }
-}
 
-function mostrarTextoCapital() {
-    textoCapital.innerHTML += ` ${capital}`;
-}
+// Paso 1 Hacer una funcion que se mande a llamar cuando el valor de la textbox cambie
+// Paso 1.1 La funcion deberá guardar el valor del textbox en la local storage
+// Paso 2 Despues hacer una funcion que va a revisar si ya hay valores dentro del storage en caso de que la pagina se cargue desde 0
+// Paso 2.1 En caso de que los 3 elementos existan, mandar llamar la funcion de gen_table()
+// Paso 3 Al principio del documento Inicializar los valores mandar a llamar
 
-function mostrarTextoCuota() {
-    textoCuota.innerHTML += ` ${cuota}`;
-}
+// Anotaciones=============================
+// Previous capital o data (es el nombre)
+// Si existe se pone, si no existe, no se pone nada
+// Condicion cuando sale null(porque no hay nada en el Storage)
+// Condicion cuando exista un valor
+// Si existen los 3 valores que se llame la función gen_table
 
-function mostrarTextoInteres() {
-    textoInteres.innerHTML += ` ${interes}`;
-}
+// 3 Ifs y 1 condicional verdadera
 
-function main() {
-    obtenerCapitalStorage();
-    obtenerCuotaStorage();
-    obtenerInteresStorage()
-    inicializarElementos();
-}
-
-main();
+// 3 funciones para guardar los valores
+// 1 para recuperarlos todos
